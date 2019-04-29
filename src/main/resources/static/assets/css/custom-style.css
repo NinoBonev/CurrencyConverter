@@ -1,0 +1,127 @@
+.btn-round {
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+
+th, td {
+    text-align: center;
+}
+
+.white-panel.pn:hover {
+    background: rgba(255, 255, 255, 0.75);
+    color: #fff;
+}
+
+.panel-body {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.btn.btn-md.col-md-15 {
+    width: 100px;
+}
+
+.btn-group-justified {
+    padding-left: 25%;
+    padding-right: 25%
+}
+
+/* White Panel Modifications */
+
+.white-header.medium-priority {
+    background: #f0ad4e;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+.white-header.low-priority {
+    background: #5cb85c;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+.white-header.high-priority {
+    background: #d9534f;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+/* FORMS */
+.form-login, .form-register {
+    max-width: 400px;
+    margin: 100px auto 100px;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.form-login h2.form-login-heading, .form-register h2.form-register-heading {
+    margin: 0;
+    padding: 25px 20px;
+    text-align: center;
+    background: #68dff0;
+    border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.login-wrap, .register-wrap{
+    padding: 20px;
+}
+
+.login-wrap .registration, .register-wrap .login {
+    text-align: center;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 40px; /* Margin bottom by footer height */
+}
+
+.site-footer {
+    position: absolute;
+    background-color: #f0ad4e;
+    bottom: 0;
+    width: 100%;
+    height: 40px; /* Set the fixed height of the footer here */
+    line-height: 40px; /* Vertically center the text there */
+    z-index: -1;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+}
+
+.graph {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.btn-col {
+    margin: 9% 2% 8% 2%;
+}
+
+#tack-img {
+    max-height: 50px;
+}
+
+.img-responsive {
+    display: inline;
+}

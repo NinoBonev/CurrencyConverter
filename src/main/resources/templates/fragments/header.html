@@ -1,0 +1,12 @@
+<header xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="header black-bg">
+    <a href="/" class="logo"><b>CURRENCY CONVERTER</b></a>
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li sec:authorize="isAnonymous()"><a class="nav-button" href="/users/login">Login</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="nav-button" href="/">Home</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="nav-button" href="/currencies/all">Admin Panel</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="nav-button" href="/users/register">Add Admin</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="nav-button" href="/users/logout">Logout</a></li>
+        </ul>
+    </div>
+</header>

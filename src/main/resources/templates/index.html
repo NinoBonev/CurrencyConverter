@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<div th:replace="~{fragments/head}"></div>
+<div th:replace="~{fragments/scripts}"></div>
+<body>
+<div th:replace="~{fragments/header}"></div>
+<div id="container">
+    <div class="wrapper">
+        <div class="row mt">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-12 statistics-col centered">
+                <div class="showback col-lg-offset-2 col-lg-4" th:object="${currency}">
+                    <div style="font-size: 18px"><strong>Currency I have</strong></div>
+                    <select onchange="calculateTotal()"
+                            class="form-control" th:id="myCurrency" name="myCurrency">
+                        <option value='1'>Select Currency</option>
+                        <option th:each="currency : ${currencies}"
+                                th:value="${currency.getExchangeRate()}"
+                                th:text="${currency.getCurrencyCode()}+' -- '+${currency.getCurrencyName()}"></option>
+                    </select>
+                </div>
+                <div class="showback col-lg-4" th:object="${currency}">
+                    <div style="font-size: 18px"><strong>Currency I want</strong></div>
+                    <select onchange="calculateTotal()"
+                            class="form-control" th:id="exchangeCurrency" name="exchangeCurrency">
+                        <option value='1'>Select Currency</option>
+                        <option th:each="currency : ${currencies}"
+                                th:value="${currency.getExchangeRate()}"
+                                th:text="${currency.getCurrencyCode()}+' -- '+${currency.getCurrencyName()}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mt">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-12 statistics-col centered">
+                <div class="showback col-lg-offset-4 col-lg-4" style="height: 100px">
+                    <div style="font-size: 18px"><strong>Amount I have</strong></div>
+                    <input onchange="calculateTotal()"
+                           value="1" th:id="amount" min="0"
+                           class="col-lg-offset-3 col-lg-6" style="font-size: larger; text-align: center; margin-top: 10px"
+                           type="number" />
+                </div>
+                <div class="showback col-lg-offset-4 col-lg-4"  style="height: 100px">
+                    <div style="font-size: 18px"><strong>Amount I get</strong></div>
+                    <span th:id="calculatedJS"
+                          class="col-lg-12"
+                          style="font-size: larger; color: red; display: flex; justify-content: center; margin-top: 10px" ></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    calculateTotal();
+</script>
+<div th:replace="~{fragments/footer}"></div>
+<div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>

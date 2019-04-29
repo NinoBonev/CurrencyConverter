@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+>
+<div th:replace="~{fragments/head}"></div>
+<body>
+<section id="container">
+    <div th:replace="~{fragments/header}"></div>
+
+    <!-- MAIN CONTENT -->
+    <section id="register-page">
+        <section class="container">
+            <form class="form-register" th:action="@{/currencies/edit/{id} (id = ${currencyEditModel.getId()})}" th:method="post"
+                  th:object="${currencyEditModel}">
+                <h2 class="form-register-heading">register</h2>
+                <div class="register-wrap container-fluid">
+                    <div class="form-group col-md-12" th:classappend="${#fields.hasErrors('currencyName')} ? 'has-error'">
+                        <input type="text" class="form-control" placeholder="Currency Name" name="currencyName" id="currencyName"
+                               th:value="*{getCurrencyName()}" autofocus>
+                        <div class="help-block has-error" th:if="${#fields.hasErrors('currencyName')}"
+                             th:each="error : ${#fields.errors('currencyName')}" th:text="${error}">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" th:classappend="${#fields.hasErrors('currencyCode')} ? 'has-error'">
+                        <input type="text" class="form-control" placeholder="Currency Code" name="currencyCode"
+                               id="currencyCode" th:value="*{getCurrencyCode()}" autofocus>
+                        <div class="help-block has-error" th:if="${#fields.hasErrors('currencyCode')}"
+                             th:each="error : ${#fields.errors('currencyCode')}" th:text="${error}">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" th:classappend="${#fields.hasErrors('currencyCode')} ? 'has-error'">
+                        <input type="text" class="form-control" placeholder="Exchange Rate" name="exchangeRate"
+                               id="exchangeRate" th:value="*{getExchangeRate()}" autofocus>
+                        <div class="help-block has-error" th:if="${#fields.hasErrors('exchangeRate')}"
+                             th:each="error : ${#fields.errors('exchangeRate')}" th:text="${error}">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button class="btn btn-theme btn-block" type="submit"><i class="fas fa-lock"></i> SAVE
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </section>
+</section>
+<div th:replace="~{fragments/footer}"></div>
+<div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>
