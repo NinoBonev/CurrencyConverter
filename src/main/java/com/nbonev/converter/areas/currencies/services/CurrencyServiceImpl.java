@@ -6,20 +6,12 @@ import com.nbonev.converter.areas.currencies.models.binding.CurrencyEditBindingM
 import com.nbonev.converter.areas.currencies.models.view.CurrencyPageViewModel;
 import com.nbonev.converter.areas.currencies.models.view.CurrencyViewModel;
 import com.nbonev.converter.areas.currencies.repositories.CurrencyRepository;
-import com.nbonev.converter.areas.currencies.util.Constants;
 import com.nbonev.converter.errors.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.jsoup.Jsoup;
-import org.jsoup.helper.Validate;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,22 +46,22 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public Currency getCurrencyByName(String currencyName) {
-        Currency currency = this.currencyRepository.findCurrencyByCurrencyName(currencyName);
+        Optional<Currency> currency = this.currencyRepository.findByCurrencyName(currencyName);
 
-        if (currency == null){
+        if (!currency.isPresent()){
             throw new ResourceNotFoundException();
         }
-        return currency;
+        return currency.get();
     }
 
     @Override
     public Currency getCurrencyByCode(String currencyCode) {
-        Currency currency = this.currencyRepository.findCurrencyByCurrencyCode(currencyCode);
+        Optional<Currency> currency = this.currencyRepository.findByCurrencyCode(currencyCode);
 
-        if (currency == null){
+        if (!currency.isPresent()){
             throw new ResourceNotFoundException();
         }
-        return currency;
+        return currency.get();
     }
 
     @Override
@@ -110,42 +102,5 @@ public class CurrencyServiceImpl implements CurrencyService {
         currency.setExchangeRate(currencyEditBindingModel.getExchangeRate());
 
         this.currencyRepository.save(currency);
-    }
-
-    @Override
-    public void synchronizeCurrency(Long id) throws IOException {
-
-        Currency currency = this.getCurrencyById(id);
-
-        Document doc = Jsoup.connect(Constants.BNB_URL).get();
-        Elements elements = doc.select("td");
-
-        for (Element element : elements) {
-            this.updateCurrency(element, currency);
-        }
-    }
-
-    @Override
-    public void synchronizeAllCurrencies() throws IOException {
-        List<Currency> currencies = this.currencyRepository.findAll();
-
-        Document doc = Jsoup.connect(Constants.BNB_URL).get();
-        Elements elements = doc.select("td");
-
-        for (Element element : elements) {
-            for (Currency currency : currencies) {
-                this.updateCurrency(element, currency);
-            }
-        }
-    }
-
-    private void updateCurrency(Element element, Currency currency){
-        if (element.text().equals(currency.getCurrencyCode())){
-            Integer divide = Integer.parseInt(element.parent().child(2).text());
-            Double rate = Double.parseDouble(element.parent().child(3).text());
-
-            currency.setExchangeRate(BigDecimal.valueOf(rate / divide));
-            this.currencyRepository.save(currency);
-        }
     }
 }

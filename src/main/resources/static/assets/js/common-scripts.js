@@ -44,7 +44,3 @@ function getSelectedText(elementId) {
 
     return elt.options[elt.selectedIndex].text;
 }
-
-function syncCurrency(id, code) {
-
-}
