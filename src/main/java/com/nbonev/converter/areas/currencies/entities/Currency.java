@@ -35,7 +35,7 @@ public class Currency {
     private String currencyCode;
 
     @NotNull(message = Constants.EXCHANGE_RATE_NOT_EMPTY)
-    @Digits(integer=9, fraction=19)
+    @Digits(integer=9, fraction=30)
     private BigDecimal exchangeRate;
 
     public Currency() {

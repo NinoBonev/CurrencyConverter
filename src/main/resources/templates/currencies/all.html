@@ -8,7 +8,7 @@
 <body>
 <section id="container">
     <div th:replace="~{fragments/header}"></div>
-    <section id="main-content">
+    <section>
         <section class="wrapper">
             <div class="row mt">
                 <div class="col-md-12">
@@ -32,21 +32,30 @@
                                 <td th:text="*{getCurrencyCode()}"></td>
                                 <td th:text="*{getExchangeRate()}"></td>
                                 <td>
-                                    <a class="btn btn-primary btn-xs"
+                                    <a class="btn btn-warning btn-xs"
                                        th:href="@{/currencies/edit/{id}(id = *{getId()})}"><i
                                             class="fas fa-pencil-alt"></i></a>
                                     <a class="btn btn-danger btn-xs"
                                        th:href="@{/currencies/delete/{id} (id = *{getId()})}">
                                         <i class="fas fa-trash-alt"></i></a>
+                                    <a class="btn btn-primary btn-xs"
+                                       th:href="@{/currencies/synchronize/{id} (id = *{getId()})}">
+                                        Synchronize now</a>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <div>
-                            <button onclick="window.location='/currencies/add'" type="button"
-                                    class="center-block btn btn-primary btn-lg">
-                                Add Currency
-                            </button>
+                            <div align="center">
+                                <button onclick="window.location='/currencies/add'" type="button"
+                                        class="centered btn btn-info btn-lg">
+                                    Add Currency
+                                </button>
+                                <button onclick="window.location='/currencies/synchronize/all'" type="button"
+                                        class="centered btn btn-primary btn-lg">
+                                    Synchronize All Currencies
+                                </button>
+                            </div>
                         </div>
                     </div><!-- /content-panel -->
                 </div><!-- /col-md-12 -->

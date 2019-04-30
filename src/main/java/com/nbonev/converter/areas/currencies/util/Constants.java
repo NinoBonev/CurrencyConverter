@@ -18,4 +18,5 @@ public class Constants {
     public static final String CURRENT_EXCHANGE_CURRENCY_CODE = "lv.";
 
 
+    public static final String BNB_URL = "http://bnb.bg/Statistics/StExternalSector/StExchangeRates/StERForeignCurrencies/index.htm";
 }

@@ -5,6 +5,7 @@ import com.nbonev.converter.areas.currencies.validation.CurrencyCodeUnique;
 import com.nbonev.converter.areas.currencies.validation.CurrencyNameUnique;
 
 import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,13 +19,18 @@ public class CurrencyCreateBindingModel {
     @NotNull
     @NotEmpty(message = Constants.CURRENCY_NAME_NOT_EMPTY)
     @Size(min = 8, max = 30, message = Constants.CURRENCY_NAME_LENGTH)
-//    @CurrencyNameUnique(message = Constants.CURRENCY_TAKEN)
+/**    @CurrencyNameUnique
+ * Not working properly -- needs further check
+ */
     private String currencyName;
 
     @NotNull
     @NotEmpty(message = Constants.CURRENCY_CODE_NOT_EMPTY)
     @Size(min = 2, max = 6, message = Constants.CURRENCY_CODE_LENGTH)
-//    @CurrencyCodeUnique(message = Constants.CURRENCY_TAKEN)
+/**    @CurrencyCodeUnique
+ * Not working properly -- needs further check
+ */
+@UniqueConstraint()
     private String currencyCode;
 
     @NotNull(message = Constants.EXCHANGE_RATE_NOT_EMPTY)
