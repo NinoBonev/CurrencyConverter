@@ -30,7 +30,7 @@ public class CurrencyCreateBindingModel {
 /**    @CurrencyCodeUnique
  * Not working properly -- needs further check
  */
-@UniqueConstraint()
+
     private String currencyCode;
 
     @NotNull(message = Constants.EXCHANGE_RATE_NOT_EMPTY)
