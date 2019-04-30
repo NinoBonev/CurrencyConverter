@@ -46,7 +46,7 @@ public class UserController extends BaseController {
         }
 
         this.userService.saveUser(userRegisterBindingModel);
-        return super.redirect("/users/admin");
+        return super.redirect("/currencies/all");
     }
 
     @GetMapping(path = "/login")
@@ -65,11 +65,5 @@ public class UserController extends BaseController {
     public ModelAndView logout(HttpSession session) {
         session.invalidate();
         return super.redirect("/");
-    }
-
-    @GetMapping(path = "/admin")
-    @PreAuthorize("@accessService.isInRoleAdmin(authentication)")
-    public ModelAndView admin() {
-        return super.view("/users/admin");
     }
 }
