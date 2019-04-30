@@ -1,8 +1,6 @@
 package com.nbonev.converter.util;
 
 public class ApplicationConstants {
-    public static final int DEFAULT_VIEWS_COUNT_PER_PAGE = 10;
-    public static final int DEFAULT_STATISTICS_COUNT_PER_PAGE = 1;
 
     //Exceptions
     public static final String DEFAULT_ERROR_MESSAGE = "Something went wrong!";
