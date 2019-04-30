@@ -6,6 +6,7 @@ import com.nbonev.converter.areas.currencies.models.binding.CurrencyEditBindingM
 import com.nbonev.converter.areas.currencies.models.view.CurrencyPageViewModel;
 import com.nbonev.converter.areas.currencies.models.view.CurrencyViewModel;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -29,4 +30,7 @@ public interface CurrencyService {
 
     void editCurrency(Long id, CurrencyEditBindingModel currencyEditBindingModel);
 
+    void synchronizeCurrency(Long id) throws IOException;
+
+    void synchronizeAllCurrencies() throws IOException;
 }

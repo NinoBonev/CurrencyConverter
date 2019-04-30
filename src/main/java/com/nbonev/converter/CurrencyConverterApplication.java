@@ -70,7 +70,7 @@ public class CurrencyConverterApplication {
                 Currency currency1 = new Currency("US Dollar", "USD",
                         BigDecimal.valueOf(1.75834));
                 Currency currency2 = new Currency("British Pound", "GBP",
-                        BigDecimal.valueOf(2.26278));
+                        BigDecimal.valueOf(3.26278));
                 Currency currency3 = new Currency("Danish Krone", "DKK",
                         BigDecimal.valueOf(0.261954));
                 Currency currency4 = new Currency("Indonesian Rupiah", "IDR",

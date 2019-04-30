@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 
 /**
@@ -86,6 +87,20 @@ public class CurrencyController extends BaseController {
     @RequestMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable(name = "id") Long id) {
         this.currencyService.deleteCurrency(id);
+        return super.redirect("/currencies/all");
+    }
+
+    @PreAuthorize("@accessService.isInRoleAdmin(authentication)")
+    @RequestMapping("/synchronize/{id}")
+    public ModelAndView synchronize(@PathVariable(name = "id") Long id) throws IOException {
+        this.currencyService.synchronizeCurrency(id);
+        return super.redirect("/currencies/all");
+    }
+
+    @PreAuthorize("@accessService.isInRoleAdmin(authentication)")
+    @RequestMapping("/synchronize/all")
+    public ModelAndView synchronizeAll() throws IOException {
+        this.currencyService.synchronizeAllCurrencies();
         return super.redirect("/currencies/all");
     }
 
