@@ -65,7 +65,7 @@ public class CurrencyConverterApplication {
             }
 
             if (allCurrencies.size() < 1){
-                Currency currency0 = new Currency("BG Lev", "BGN",
+                Currency currency0 = new Currency("Bulgarian Lev", "BGN",
                         BigDecimal.valueOf(1));
                 Currency currency1 = new Currency("US Dollar", "USD",
                         BigDecimal.valueOf(1.75834));
