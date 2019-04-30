@@ -105,9 +105,11 @@ public class CurrencyServiceImpl implements CurrencyService {
     public void editCurrency(Long id, CurrencyEditBindingModel currencyEditBindingModel) {
         Currency currency = this.getCurrencyById(id);
 
+        if(!currency.getCurrencyCode().equals("BGN")){
         currency.setCurrencyCode(currencyEditBindingModel.getCurrencyCode());
         currency.setCurrencyName(currencyEditBindingModel.getCurrencyName());
         currency.setExchangeRate(currencyEditBindingModel.getExchangeRate());
+        }
 
         this.currencyRepository.save(currency);
     }
